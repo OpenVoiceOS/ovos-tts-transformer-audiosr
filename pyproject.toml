@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ovos-tts-transformer-audiosr"
+dynamic = ["version"]
+description = "Engine-agnostic audio super-resolution TTS transformer for OpenVoiceOS (upscale any TTS voice to 48 kHz)"
+readme = "README.md"
+license = "Apache-2.0"
+authors = [{name = "JarbasAi", email = "jarbasai@mailfence.com"}]
+requires-python = ">=3.10"
+keywords = [
+    "ovos", "tts", "transformer", "audio super resolution",
+    "bandwidth extension", "48khz", "onnx",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+    "Intended Audience :: Developers",
+]
+dependencies = [
+    "ovos-plugin-manager>=0.5.0,<3.0.0",
+    "ovos-utils>=0.2.1,<1.0.0",
+    "audiosronnx @ git+https://github.com/TigreGotico/audiosronnx@dev",
+]
+
+[project.urls]
+Homepage = "https://github.com/OpenVoiceOS/ovos-tts-transformer-audiosr"
+Repository = "https://github.com/OpenVoiceOS/ovos-tts-transformer-audiosr"
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "pytest-cov",
+]
+
+[project.entry-points."opm.transformer.tts"]
+"ovos-tts-transformer-audiosr" = "ovos_tts_transformer_audiosr:AudioSRTTSTransformer"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["ovos_tts_transformer_audiosr*"]
+
+[tool.setuptools.dynamic]
+version = {attr = "ovos_tts_transformer_audiosr.version.__version__"}
