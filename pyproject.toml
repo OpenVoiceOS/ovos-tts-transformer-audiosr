@@ -21,7 +21,7 @@ classifiers = [
     "Intended Audience :: Developers",
 ]
 dependencies = [
-    "ovos-plugin-manager>=0.5.0,<3.0.0",
+    "ovos-plugin-manager>=2.9.0a1,<3.0.0",
     "ovos-utils>=0.2.1,<1.0.0",
     "audiosronnx @ git+https://github.com/TigreGotico/audiosronnx@dev",
 ]

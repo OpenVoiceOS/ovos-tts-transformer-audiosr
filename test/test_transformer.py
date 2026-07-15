@@ -47,9 +47,13 @@ def test_engine_from_config():
 
 
 def test_entrypoint_registered():
-    from ovos_plugin_manager.tts_transformers import find_tts_transformer_plugins
-    plugins = find_tts_transformer_plugins()
-    assert "ovos-tts-transformer-audiosr" in plugins
+    from importlib.metadata import entry_points
+    from ovos_plugin_manager.templates.transformers import TTSTransformer
+
+    eps = entry_points(group="opm.transformer.tts")
+    match = [e for e in eps if e.name == "ovos-tts-transformer-audiosr"]
+    assert match, "plugin not registered under opm.transformer.tts"
+    assert issubclass(match[0].load(), TTSTransformer)
 
 
 def test_transform_upscales_to_48k():
