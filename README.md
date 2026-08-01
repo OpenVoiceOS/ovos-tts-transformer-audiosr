@@ -7,9 +7,8 @@ is brighter, less muffled speech without retraining or replacing your existing
 voice.
 
 This is a [TTS transformer](https://openvoiceos.github.io/ovos-technical-manual/tts_transformers/)
-plugin (`opm.transformer.tts`): it runs after the TTS stage and before playback,
-operating on the generated waveform rather than on text — so it works with every
-TTS engine, not just one.
+plugin (`opm.transformer.tts`). It runs after the TTS stage and before playback.
+It operates on the generated waveform, not on text, so it works with any TTS engine.
 
 It wraps [`audiosronnx`](https://github.com/TigreGotico/audiosronnx), a pure-ONNX
 super-resolution library (no Torch at runtime).
@@ -20,14 +19,14 @@ super-resolution library (no Torch at runtime).
   configured `audiosronnx` engine.
 - The engine reconstructs a 48 kHz waveform from the low-resolution input.
 - The upscaled audio is written alongside the original (`<name>_sr.wav`) and
-  handed back for playback; its 48 kHz rate travels in the wav header.
+  handed back for playback. Its 48 kHz rate travels in the wav header.
 - If audio is already 48 kHz, the transform is skipped and the file is returned
   untouched.
 - If `audiosronnx` (or its weights) is unavailable, or an upscale fails, the
-  original audio is returned unchanged — synthesis never breaks.
+  original audio is returned unchanged. Synthesis never breaks.
 
 Model weights are fetched from the Hugging Face Hub on first use and cached
-locally; no manual download step is required.
+locally. No manual download step is required.
 
 ## Installation
 
@@ -46,7 +45,7 @@ keyed by the plugin name:
 }
 ```
 
-Multiple TTS transformers can be chained — execution order follows each plugin's
+Multiple TTS transformers can be chained. Execution order follows each plugin's
 `priority` (this plugin defaults to `50`).
 
 ### Engines
@@ -56,14 +55,14 @@ Select the super-resolution engine with the `engine` config key:
 | engine        | notes                                                                 |
 |---------------|-----------------------------------------------------------------------|
 | `novasr`      | **Default.** Natural on TTS output and lightweight.                    |
-| `lavasr`      | Higher-detail bandwidth extension; can add audible high-frequency noise on already-wideband voices. |
+| `lavasr`      | Higher-detail bandwidth extension. Can add audible high-frequency noise on already-wideband voices. |
 | `hifiganbwe`  | HiFi-GAN bandwidth extension.                                         |
 | `apbwe`       | Amplitude-and-phase bandwidth extension.                             |
 
 `novasr` is the default because it stays natural on synthesized speech, which is
-often already fairly wideband; `lavasr` recovers more detail but can introduce
+often already fairly wideband. `lavasr` recovers more detail but can introduce
 high-frequency noise on such input. All engines output 48 kHz. Model download
-sizes are modest (a few to a few tens of MB); see the
+sizes are modest, from a few to a few tens of MB. See the
 [`audiosronnx`](https://github.com/TigreGotico/audiosronnx) project for the
 per-engine model details.
 
@@ -74,8 +73,8 @@ per-engine model details.
 
 ## Related
 
-- [`ovos-tts-transformer-sox-plugin`](https://github.com/OpenVoiceOS/ovos-tts-transformer-sox-plugin) —
-  general-purpose audio effects (pitch, reverb, EQ, …) for TTS output.
+- [`ovos-tts-transformer-sox-plugin`](https://github.com/OpenVoiceOS/ovos-tts-transformer-sox-plugin):
+  general-purpose audio effects (pitch, reverb, EQ, and more) for TTS output.
 
 ## Credits
 
