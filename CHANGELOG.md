@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.2a2](https://github.com/OpenVoiceOS/ovos-tts-transformer-audiosr/tree/0.0.2a2) (2026-08-01)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-tts-transformer-audiosr/compare/0.0.2a1...0.0.2a2)
+
+**Merged pull requests:**
+
+- docs: rewrite README in Simplified Technical English [\#2](https://github.com/OpenVoiceOS/ovos-tts-transformer-audiosr/pull/2) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.0.2a1](https://github.com/OpenVoiceOS/ovos-tts-transformer-audiosr/tree/0.0.2a1) (2026-07-15)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-tts-transformer-audiosr/compare/fe5dea7be9f1c7e72d048fa25b4b61a470a33392...0.0.2a1)
